@@ -16,6 +16,31 @@
 <script src="./threejs/ViewHelper.js"></script>
 <script src="./Qgis2threejs.js"></script>
 </head>
+
+  <style>
+  #wm-wrapper {
+    position: fixed;
+    top: calc(env(safe-area-inset-top, 0px) + 10px); /* respeita o notch do iPhone */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 99999;
+    pointer-events: none;     /* não bloqueia cliques/gestos do 3D */
+    user-select: none;
+  }
+  #wm-wrapper img {
+    height: 48px;            /* ajuste a altura a gosto */
+    max-width: 60vw;         /* limita o tamanho em telas pequenas */
+    opacity: 1;           /* transparência da marca d'água */
+    filter: drop-shadow(0 2px 3px rgba(0,0,0,.20)); /* legibilidade em fundos claros */
+  }
+  @media (max-width: 480px) {
+    #wm-wrapper img { height: 72px; }
+  }
+</style>
+<div id="wm-wrapper">
+  <img src="logo_empresa.png" alt="Marca d'água">
+</div>
+  
 <body>
 <div id="view">
   <div id="northarrow"></div>
@@ -87,12 +112,6 @@
 <!-- progress bar -->
 <div id="progress"><div id="progressbar"></div></div>
 
-<!-- menu -->
-<div id="toolbtns">
-  <div id="layerbtn"></div>
-  <div id="animbtn" class="hidden"></div>
-  <div id="infobtn"></div>
-</div>
 
 <!-- header and footer -->
 <div id="header"></div>
@@ -133,3 +152,4 @@ app.loadSceneFile("./data/index/scene.js", function (scene) {
 </script>
 </body>
 </html>
+
